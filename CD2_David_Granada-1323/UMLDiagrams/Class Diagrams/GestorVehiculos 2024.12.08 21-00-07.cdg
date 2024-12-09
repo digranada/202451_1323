@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="GestorVehiculos">
+  <ClassDiagramComponents>
+    <Class name="Empleado" package="com.mycompany.gestorvehiculos" visibility="public" xPosition="20.0" yPosition="20.0">
+      <Fields>
+        <Field name="nombre" type="String" visibility="public"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="nombre"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="gestionarUsuario" returnType="void" visibility="public">
+          <Argument type="Usuario" name="usuario"/>
+        </Method>
+        <Method name="gestionarVehiculo" returnType="void" visibility="public">
+          <Argument type="Vehiculo" name="vehiculo"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Interface name="Gestor" package="com.mycompany.gestorvehiculos" visibility="public" xPosition="320.0" yPosition="20.0">
+      <Methods>
+        <Method name="gestionarUsuario" returnType="void" visibility="package">
+          <Argument type="Usuario" name="usuario"/>
+        </Method>
+        <Method name="gestionarVehiculo" returnType="void" visibility="package">
+          <Argument type="Vehiculo" name="vehiculo"/>
+        </Method>
+      </Methods>
+    </Interface>
+    <Class name="GestorVehiculos" package="com.mycompany.gestorvehiculos" visibility="public" xPosition="620.0" yPosition="20.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Interface name="Prestable" package="com.mycompany.gestorvehiculos" visibility="public" xPosition="920.0" yPosition="20.0">
+      <Methods>
+        <Method name="prestar" returnType="void" visibility="package"/>
+        <Method name="devolver" returnType="void" visibility="package"/>
+      </Methods>
+    </Interface>
+    <Class name="Taller" package="com.mycompany.gestorvehiculos" visibility="public" xPosition="1220.0" yPosition="20.0">
+      <Fields>
+        <Field name="catalogoVehiculos" type="List&lt;Vehiculo&gt;" visibility="public"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="agregarVehiculo" returnType="void" visibility="public">
+          <Argument type="Vehiculo" name="vehiculo"/>
+        </Method>
+        <Method name="getCatalogoVehiculos" returnType="List&lt;Vehiculo&gt;" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Transaccion" package="com.mycompany.gestorvehiculos" visibility="public" xPosition="1520.0" yPosition="20.0">
+      <Fields>
+        <Field name="usuario" type="Usuario" visibility="public"/>
+        <Field name="vehiculo" type="Vehiculo" visibility="public"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Usuario" name="usuario"/>
+          <Argument type="Vehiculo" name="vehiculo"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="registrarPrestamo" returnType="void" visibility="public"/>
+        <Method name="registrarDevolucion" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Usuario" package="com.mycompany.gestorvehiculos" visibility="public" xPosition="1820.0" yPosition="20.0">
+      <Fields>
+        <Field name="nombre" type="String" visibility="public"/>
+        <Field name="numeroCedula" type="String" visibility="public"/>
+        <Field name="vehiculosMatriculados" type="List&lt;Vehiculo&gt;" visibility="public"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="nombre"/>
+          <Argument type="String" name="numeroCedula"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="validarCedula" returnType="boolean" visibility="private">
+          <Argument type="String" name="cedula"/>
+        </Method>
+        <Method name="matricularVehiculo" returnType="void" visibility="public">
+          <Argument type="Vehiculo" name="vehiculo"/>
+        </Method>
+        <Method name="getNombre" returnType="String" visibility="public"/>
+        <Method name="getVehiculosMatriculados" returnType="List&lt;Vehiculo&gt;" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Vehiculo" package="com.mycompany.gestorvehiculos" visibility="public" xPosition="2120.0" yPosition="20.0">
+      <Fields>
+        <Field name="placa" type="String" visibility="public"/>
+        <Field name="numeroChasis" type="String" visibility="public"/>
+        <Field name="año" type="int" visibility="public"/>
+        <Field name="tipo" type="String" visibility="public"/>
+        <Field name="costoVehiculo" type="double" visibility="public"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="placa"/>
+          <Argument type="String" name="numeroChasis"/>
+          <Argument type="int" name="año"/>
+          <Argument type="String" name="tipo"/>
+          <Argument type="double" name="costoVehiculo"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="validarPlaca" returnType="boolean" visibility="private">
+          <Argument type="String" name="placa"/>
+        </Method>
+        <Method name="prestar" returnType="void" visibility="public"/>
+        <Method name="devolver" returnType="void" visibility="public"/>
+        <Method name="getPlaca" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="vehiculo" source="com.mycompany.gestorvehiculos.Transaccion" target="com.mycompany.gestorvehiculos.Vehiculo" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="com.mycompany.gestorvehiculos.Empleado" target="com.mycompany.gestorvehiculos.Gestor"/>
+    <UseRelation source="com.mycompany.gestorvehiculos.Empleado" target="com.mycompany.gestorvehiculos.Usuario" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="com.mycompany.gestorvehiculos.Empleado" target="com.mycompany.gestorvehiculos.Vehiculo" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="com.mycompany.gestorvehiculos.Taller" target="com.mycompany.gestorvehiculos.Vehiculo" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="usuario" source="com.mycompany.gestorvehiculos.Transaccion" target="com.mycompany.gestorvehiculos.Usuario" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="vehiculosMatriculados" source="com.mycompany.gestorvehiculos.Usuario" target="com.mycompany.gestorvehiculos.Vehiculo" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Vehiculo&gt;"/>
+    <UseRelation source="com.mycompany.gestorvehiculos.Gestor" target="com.mycompany.gestorvehiculos.Usuario" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="com.mycompany.gestorvehiculos.Gestor" target="com.mycompany.gestorvehiculos.Vehiculo" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="com.mycompany.gestorvehiculos.Usuario" target="com.mycompany.gestorvehiculos.Vehiculo" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="catalogoVehiculos" source="com.mycompany.gestorvehiculos.Taller" target="com.mycompany.gestorvehiculos.Vehiculo" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Vehiculo&gt;"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="com.mycompany.gestorvehiculos.Vehiculo" target="com.mycompany.gestorvehiculos.Prestable"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
